@@ -1,0 +1,19 @@
+%h1 Listing showdowns
+
+%table
+  %tr
+    %th Name
+    %th
+    %th
+    %th
+
+  - @showdowns.each do |showdown|
+    %tr
+      %td= showdown.name
+      %td= link_to 'Show', showdown
+      %td= link_to 'Edit', edit_showdown_path(showdown)
+      %td= link_to 'Destroy', showdown, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Showdown', new_showdown_path

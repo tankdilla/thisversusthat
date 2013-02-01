@@ -1,0 +1,9 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @showdown.name
+
+= link_to 'Edit', edit_showdown_path(@showdown)
+\|
+= link_to 'Back', showdowns_path
