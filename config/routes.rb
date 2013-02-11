@@ -1,5 +1,6 @@
 Thisversusthat::Application.routes.draw do
   resources :showdowns do
+    post 'add_vote'
     resources :votes
     resources :comments
   end

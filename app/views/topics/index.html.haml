@@ -12,7 +12,7 @@
     %tr
       %td= topic.name
       %td= link_to 'Show', topic
-      %td= image_tag(@topic.avatar_url) if @topic.avatar?
+      %td= image_tag(topic.avatar_url) if topic.avatar?
       %td= link_to 'Edit', edit_topic_path(topic)
       %td= link_to 'Destroy', topic, method: :delete, data: { confirm: 'Are you sure?' }
 

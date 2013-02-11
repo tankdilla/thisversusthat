@@ -81,4 +81,19 @@ class ShowdownsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def add_vote
+    @showdown = Showdown.find(params[:id])
+    if params[:topic_id]
+      topic = Topic.find(params[:topic_id])
+      vote = Vote.new(:topic_id=>topic.id, :showdown_id=>@showdown.id)
+      if vote.save
+        format.html { redirect_to @showdown, notice: 'Vote was successfully created.' }
+        format.json { render json: @showdown, status: :created, location: @showdown }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @showdown.errors, status: :unprocessable_entity }
+      end
+    end
+  end
 end
