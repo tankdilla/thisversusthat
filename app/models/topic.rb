@@ -8,7 +8,7 @@ class Topic
   
   mount_uploader :avatar, AvatarUploader
   
-  attr_accessible :avatar, :avatar_cache
+  #attr_accessible :name, :description, :url, :avatar, :avatar_cache
   
   validates_presence_of :name
   

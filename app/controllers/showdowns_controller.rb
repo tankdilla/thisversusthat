@@ -25,6 +25,7 @@ class ShowdownsController < ApplicationController
   # GET /showdowns/new.json
   def new
     @showdown = Showdown.new
+    @topics = Topic.all
 
     respond_to do |format|
       format.html # new.html.erb

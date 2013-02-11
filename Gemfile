@@ -5,6 +5,11 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
 end
+
+group :development do
+  gem 'debugger'
+end
+
 gem 'jquery-rails'
 gem "thin", ">= 1.5.0"
 gem "mongoid", ">= 3.0.19"
@@ -28,3 +33,6 @@ gem "binding_of_caller", ">= 0.6.8", :group => :development
 gem "hub", ">= 1.10.2", :require => nil, :group => [:development]
 gem "carrierwave"
 gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
+gem 'bootstrap-sass'
+gem 'simple_form'
+gem 'mini_magick'

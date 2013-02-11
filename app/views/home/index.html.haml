@@ -1,4 +1,8 @@
-%h3 Home
-- @users.each do |user|
-  %p
-    User: #{link_to user.name, user}
+- unless @showdowns.blank?
+  - @showdowns.each do |s|
+    %p
+      = s.name
+  
+
+%p
+  = link_to 'Add showdown', new_showdown_url

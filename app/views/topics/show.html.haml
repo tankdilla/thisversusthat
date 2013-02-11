@@ -1,6 +1,6 @@
 %p#notice= notice
-
-= render "show_topic", :locals=>{:topic=>@topic}
+- debugger
+= render :partial=>"show_topic", :locals=>{:topic=>@topic}
 
 = link_to 'Edit', edit_topic_path(@topic)
 \|
