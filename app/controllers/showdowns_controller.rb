@@ -36,12 +36,21 @@ class ShowdownsController < ApplicationController
   # GET /showdowns/1/edit
   def edit
     @showdown = Showdown.find(params[:id])
+    @topics = Topic.in(id: @showdown.topic_ids)
   end
 
   # POST /showdowns
   # POST /showdowns.json
   def create
     @showdown = Showdown.new(params[:showdown])
+    
+    if params[:topic_1]
+      @showdown.topic_ids << params[:topic_1]
+    end
+    
+    if params[:topic_2]
+      @showdown.topic_ids << params[:topic_2]
+    end
 
     respond_to do |format|
       if @showdown.save
@@ -58,6 +67,14 @@ class ShowdownsController < ApplicationController
   # PUT /showdowns/1.json
   def update
     @showdown = Showdown.find(params[:id])
+    
+    if params[:topic_1]
+      @showdown.topic_ids << params[:topic_1]
+    end
+    
+    if params[:topic_2]
+      @showdown.topic_ids << params[:topic_2]
+    end
 
     respond_to do |format|
       if @showdown.update_attributes(params[:showdown])
@@ -83,16 +100,21 @@ class ShowdownsController < ApplicationController
   end
   
   def add_vote
-    @showdown = Showdown.find(params[:id])
+    @showdown = Showdown.find(params[:showdown_id])
+    
     if params[:topic_id]
+      
+      #todo: validate input
       topic = Topic.find(params[:topic_id])
-      vote = Vote.new(:topic_id=>topic.id, :showdown_id=>@showdown.id)
-      if vote.save
-        format.html { redirect_to @showdown, notice: 'Vote was successfully created.' }
-        format.json { render json: @showdown, status: :created, location: @showdown }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @showdown.errors, status: :unprocessable_entity }
+      vote = Vote.new(:topic_id=>topic.id, :showdown_id=>@showdown.id, ip_address: request.env["REMOTE_ADDR"])
+      respond_to do |format|
+        if vote.save
+          format.html { redirect_to @showdown, notice: 'Vote was successfully created.' }
+          format.json { render json: @showdown, status: :created, location: @showdown }
+        else
+          format.html { redirect_to @showdown, notice: 'Invalid vote.' }
+          format.json { render json: @showdown.errors, status: :unprocessable_entity }
+        end
       end
     end
   end

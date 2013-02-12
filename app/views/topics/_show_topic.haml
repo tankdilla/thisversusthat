@@ -2,4 +2,4 @@
   %b 
     = topic.name
 %p
-  = image_tag(topic.avatar_url) if topic.avatar?
+  = image_tag(topic.avatar.thumb.url) if topic.avatar?

@@ -1,9 +1,29 @@
-%p#notice= notice
-
 %p
   %b Name:
   = @showdown.name
+  
+%table{:style=>"width:100%;"}
+  %tr
+    - @showdown.topics.each do |t|
+      %td{:align=>"center"}
+        = image_tag(t.avatar.thumb.url) if t.avatar?
+        %br
+        = t.name
+  %tr
+    - @showdown.topics.each do |t|
+      %td{:align=>"center"}
+        = link_to 'Vote', showdown_add_vote_path(@showdown, :topic_id=>t.id), :method=>:post
+  %tr
+    - @showdown.topics.each do |t|
+      %td{:align=>"center"}
+        = @showdown.votes_for(t)
+        votes
+  %tr
+    %td{:colspan=>2, :align=>"center"}
+      %b VS
 
 = link_to 'Edit', edit_showdown_path(@showdown)
 \|
 = link_to 'Back', showdowns_path
+\|
+= link_to 'Destroy', @showdown, method: :delete, data: { confirm: 'Are you sure?' }

@@ -11,8 +11,8 @@ class AvatarUploader < CarrierWave::Uploader::Base
   # include Sprockets::Helpers::IsolatedHelper
 
   # Choose what kind of storage to use for this uploader:
-  storage :grid_fs
-  #storage :file
+  #storage :grid_fs
+  storage :file
   # storage :fog
   
   # Override the directory where uploaded files will be stored.
@@ -36,10 +36,10 @@ class AvatarUploader < CarrierWave::Uploader::Base
   #   # do something
   # end
   
-  process :resize_to_fit => [800, 800]
+  process :resize_to_fit => [300, 300]
 
   version :thumb do
-    process :resize_to_fill => [200,200]
+    process :resize_to_fill => [100,100]
   end
 
   # Create different versions of your uploaded files:

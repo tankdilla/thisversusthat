@@ -1,7 +1,11 @@
 - unless @showdowns.blank?
   - @showdowns.each do |s|
     %p
-      = s.name
+      = link_to s.name, showdown_path(s)
+      - s.topics.each do |t|
+        = image_tag(t.avatar.thumb.url)
+        - unless t == s.topics.last
+          vs
   
 
 %p

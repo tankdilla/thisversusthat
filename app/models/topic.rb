@@ -11,5 +11,6 @@ class Topic
   #attr_accessible :name, :description, :url, :avatar, :avatar_cache
   
   validates_presence_of :name
+
   
 end
