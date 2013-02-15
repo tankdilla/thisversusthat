@@ -112,7 +112,9 @@ class ShowdownsController < ApplicationController
           format.html { redirect_to @showdown, notice: 'Vote was successfully created.' }
           format.json { render json: @showdown, status: :created, location: @showdown }
         else
-          format.html { redirect_to @showdown, notice: 'Invalid vote.' }
+          msg = ""
+          vote.errors.full_messages.each{|e| msg += e}
+          format.html { redirect_to @showdown, notice: "Invalid vote. #{msg}" }
           format.json { render json: @showdown.errors, status: :unprocessable_entity }
         end
       end
