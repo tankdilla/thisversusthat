@@ -1,0 +1,8 @@
+
+= render :partial=>"show_topic", :locals=>{:topic=>@topic}
+
+= link_to 'List', topics_path
+\|
+= link_to 'Edit', edit_topic_path(@topic)
+\|
+= link_to 'Destroy', @topic, method: :delete, data: { confirm: 'Are you sure?' }

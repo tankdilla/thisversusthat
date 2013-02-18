@@ -1,0 +1,6 @@
+
+  - comments.each do |comment|
+    %b= comment.user.name
+      %p
+        -
+        = comment.comment_text

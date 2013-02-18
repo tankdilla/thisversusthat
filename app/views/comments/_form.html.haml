@@ -1,0 +1,10 @@
+= simple_form_for [@showdown, @comment], :html => {:multipart => true} do |f|
+  = f.error_notification
+  = display_base_errors @comment
+
+  .field
+    = f.label :comment_text
+    = f.text_field :comment_text
+
+  .actions
+    = f.submit 'Save'

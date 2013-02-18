@@ -22,6 +22,10 @@
     %td{:colspan=>2, :align=>"center"}
       %b VS
 
+= render :partial => "comments/index", :locals=>{:comments=>@showdown.comments}
+
+= render :partial => "comments/new", :locals=>{:comment=>@showdown.comments.new}
+      
 = link_to 'Edit', edit_showdown_path(@showdown)
 \|
 = link_to 'Back', showdowns_path

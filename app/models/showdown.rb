@@ -5,6 +5,7 @@ class Showdown
   
   #has_many :topics
   has_many :votes, :dependent=>:destroy
+  embeds_many :comments
   
   def topics
     Topic.in(id: topic_ids)

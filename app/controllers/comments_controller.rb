@@ -1,0 +1,90 @@
+class CommentsController < ApplicationController
+  before_filter :find_showdown
+
+  # GET /topics
+  # GET /topics.json
+  def index
+    @comments = @showdown.comments.all
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @comments }
+    end
+  end
+
+  # GET /topics/1
+  # GET /topics/1.json
+  def show
+    @comment = @showdown.comments.find(params[:id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @comment }
+    end
+  end
+
+  # GET /topics/new
+  # GET /topics/new.json
+  def new
+    @comment = @showdown.comments.new
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @comment }
+    end
+  end
+
+  # GET /topics/1/edit
+  def edit
+    @comment = @showdown.comments.find(params[:id])
+  end
+
+  # POST /topics
+  # POST /topics.json
+  def create
+    @comment = @showdown.comments.new(params[:topic])
+
+    respond_to do |format|
+      if @comment.save
+        format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
+        format.json { render json: @comment, status: :created, location: @comment }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @comment.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PUT /topics/1
+  # PUT /topics/1.json
+  def update
+    @comment = @showdown.comments.find(params[:id])
+
+    respond_to do |format|
+      if @comment.update_attributes(params[:topic])
+        format.html { redirect_to @comment, notice: 'Comment was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @comment.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # DELETE /topics/1
+  # DELETE /topics/1.json
+  def destroy
+    @comment = @showdown.comments.find(params[:id])
+    @comment.destroy
+
+    respond_to do |format|
+      format.html { redirect_to topics_url }
+      format.json { head :no_content }
+    end
+  end
+  
+  private
+  def find_showdown
+    @showdown = Showdown.find params[:showdown_id]
+  end
+end
