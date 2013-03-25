@@ -1,10 +1,10 @@
-= simple_form_for [@showdown, @comment], :html => {:multipart => true} do |f|
+= simple_form_for [showdown, comment], :html => {:multipart => true}, :remote=>true do |f|
   = f.error_notification
-  = display_base_errors @comment
+  = display_base_errors comment
 
   .field
     = f.label :comment_text
-    = f.text_field :comment_text
+    = f.text_field :comment_text, :class=>'span6', :size=>140
 
   .actions
     = f.submit 'Save'

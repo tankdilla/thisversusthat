@@ -22,12 +22,16 @@
     %td{:colspan=>2, :align=>"center"}
       %b VS
 
-= render :partial => "comments/index", :locals=>{:comments=>@showdown.comments}
+.comment_add_link
+  %b= link_to 'Add Comment', new_showdown_comment_path(@showdown), :remote=>true
+.add_comment
+.show_comments
+  = render :partial=>'comments/show_comments', :locals=>{:showdown=>@showdown}
 
-= render :partial => "comments/new", :locals=>{:comment=>@showdown.comments.new}
-      
-= link_to 'Edit', edit_showdown_path(@showdown)
-\|
-= link_to 'Back', showdowns_path
-\|
-= link_to 'Destroy', @showdown, method: :delete, data: { confirm: 'Are you sure?' }
+%p
+- if false
+  = link_to 'Edit', edit_showdown_path(@showdown)
+  \|
+  = link_to 'Back', showdowns_path
+  \|
+  = link_to 'Destroy', @showdown, method: :delete, data: { confirm: 'Are you sure?' }

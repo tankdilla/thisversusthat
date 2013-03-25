@@ -14,7 +14,7 @@ class ShowdownsController < ApplicationController
   # GET /showdowns/1.json
   def show
     @showdown = Showdown.find(params[:id])
-    
+    @topics = Topic.all
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @showdown }

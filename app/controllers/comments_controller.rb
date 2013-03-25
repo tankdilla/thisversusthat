@@ -26,10 +26,10 @@ class CommentsController < ApplicationController
   # GET /topics/new
   # GET /topics/new.json
   def new
-    @comment = @showdown.comments.new
-
+    
     respond_to do |format|
       format.html # new.html.erb
+      format.js
       format.json { render json: @comment }
     end
   end
@@ -42,14 +42,16 @@ class CommentsController < ApplicationController
   # POST /topics
   # POST /topics.json
   def create
-    @comment = @showdown.comments.new(params[:topic])
+    #comment = @showdown.comments.new(params[:comment])
 
     respond_to do |format|
-      if @comment.save
+      if @showdown.comments.create!(params[:comment])
         format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
+        format.js
         format.json { render json: @comment, status: :created, location: @comment }
       else
         format.html { render action: "new" }
+        format.js
         format.json { render json: @comment.errors, status: :unprocessable_entity }
       end
     end

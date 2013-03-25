@@ -1,0 +1,3 @@
+- unless showdown.comments.blank?
+    %p
+    = render :partial=>'comments/list_comments', :locals=>{:comments=>showdown.comments}

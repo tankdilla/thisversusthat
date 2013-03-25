@@ -1,6 +1,3 @@
-
-  - comments.each do |comment|
-    %b= comment.user.name
-      %p
-        -
-        = comment.comment_text
+- comments.each do |comment|
+  %b= comment.user.name rescue 'anon'
+  %p= comment.comment_text
